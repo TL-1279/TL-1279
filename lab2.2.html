@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Coding Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://png.pngtree.com/background/20221017/original/pngtree-green-floral-background-with-leaves-picture-image_1920970.jpg');
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(239, 239, 239, 0.1);
+        }
+        h1,h2, h3 {
+            text-align: center;
+            font-size: 0px auto;
+        }
+        input[type="text"], input[type="password"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            background-color:#145b24;
+        }
+        .run-btn {
+            background-color: #28a745; /* Green */
+        }
+        .clear-btn {
+            background-color: #dc3545; /* Red */
+        }
+        .submit-btn {
+            background-color: #007bff; /* Blue */
+        }
+        .hint-btn {
+            background-color: #ffc107; /* Yellow */
+        }
+        .save-btn {
+            background-color: #6c757d; /* Grey */
+        }
+        button:hover {
+            opacity: 0.9; /* Slight transparency on hover */
+            background-color:#145b24;
+        }
+        .hidden {
+            display: none;
+        }
+        .exercise-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .exercise-list li {
+            background-color: MintCream	;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .exercise-list li:hover {
+            background-color: #B0E0E6;
+        }
+        .exercise-item {
+            background-color: #f9f9f9;
+            border: 1px solid #0e5b20;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .exercise-item:hover {
+            background-color: #f1f1f1;
+        }
+        .code-editor {
+            height: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            background-color: #f0f0f0;
+        }
+        .score-section, .ranking-section, .feedback-section {
+            margin: 20px 0;
+            background-color: #ddd;
+            padding: 15px;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginScreen">
+        <h1>Login</h1>
+        <label for="username">Username/Email</label>
+        <input type="text" id="username" name="username" placeholder="Enter your email or username">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <button onclick="login()">Login</button>
+        <p><a href="#">Forgot Password?</a></p>
+    </div>
+
+    <div class="container hidden" id="dashboardScreen">
+        <h2>Dashboard</h2>
+        <h3>Available Exercises</h3>
+        <ul class="exercise-list" id="exerciseList"></ul>
+    </div>
+
+    <div class="container hidden" id="codingEnvironment">
+        <h2 id="exerciseTitle"></h2>
+        <p id="exerciseDescription"></p>
+        <div class="code-editor" contenteditable="true" id="codeEditor">
+            // Write your code here...
+        </div>
+        <button class="run-btn" onclick="runCode()">Run Code</button>
+        <button class="clear-btn" onclick="clearCode()">Clear Code</button>
+        <button class="submit-btn" onclick="submitCode()">Submit Code</button>
+        <button class="hint-btn" onclick="showHint()">Hint</button>
+        <button class="save-btn" onclick="saveProgress()">Save Progress</button>
+        <div id="output"></div>
+        
+        <!-- Score Section -->
+        <div class="score-section">
+            <h3>Your Score</h3>
+            <p>You passed 1 out of 2 test cases.</p>
+        </div>
+
+        <!-- Ranking Section (Optional) -->
+        <div class="ranking-section">
+            <h3>Student Rankings</h3>
+            <p>Your current rank: #5</p>
+            <p>Top performer: Student A - 10 points</p>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="feedback-section">
+            <h3>Leave Feedback or Ask for Help</h3>
+            <textarea rows="4" cols="50" placeholder="Enter your feedback or question here..."></textarea><br>
+            <button class="submit-btn">Submit Feedback</button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button onclick="tryAgain()">Try Again</button>
+            <button onclick="returnToDashboard()">Return to Dashboard</button>
+        </div>
+
+        <div class="error-section">
+            <h3>Execution Errors</h3>
+            <div>Syntax Error on line 10: Missing semicolon.</div>
+            <div>Runtime Error on line 15: Array out of bounds.</div>
+        </div>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                title: "C Programming: Basic I/O",
+                description: "Learn to use printf and scanf.",
+                difficulty: "Easy",
+                timeLimit: "30 minutes",
+                points: 10,
+            },
+            {
+                title: "Python: List Operations",
+                description: "Practice using lists and their methods.",
+                difficulty: "Medium",
+                timeLimit: "45 minutes",
+                points: 15,
+            },
+            {
+                title: "Java: OOP Concepts",
+                description: "Understand classes and objects in Java.",
+                difficulty: "Hard",
+                timeLimit: "60 minutes",
+                points: 20,
+            },
+        ];
+
+        function login() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+            loadExercises();
+        }
+
+        function loadExercises() {
+            const exerciseList = document.getElementById('exerciseList');
+            exercises.forEach((exercise, index) => {
+                const li = document.createElement('li');
+                li.className = 'exercise-item';
+                li.innerText = `${exercise.title} - ${exercise.difficulty}`;
+                li.onclick = () => selectExercise(index);
+                exerciseList.appendChild(li);
+            });
+        }
+
+        function selectExercise(index) {
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('codingEnvironment').classList.remove('hidden');
+            const exercise = exercises[index];
+            document.getElementById('exerciseTitle').innerText = exercise.title;
+            document.getElementById('exerciseDescription').innerText = exercise.description;
+        }
+
+        function runCode() {
+            const code = document.getElementById('codeEditor').innerText;
+            document.getElementById('output').innerText = `Running code: \n${code}`;
+        }
+
+        function clearCode() {
+            document.getElementById('codeEditor').innerText = '// Write your code here...';
+            document.getElementById('output').innerText = '';
+        }
+
+        function submitCode() {
+            const code = document.getElementById('codeEditor').innerText;
+            document.getElementById('output').innerText = `Code submitted: \n${code}`;
+            // Here you can add logic to evaluate the code submission
+        }
+
+        function saveProgress() {
+            const code = document.getElementById('codeEditor').innerText;
+            // Logic to save the progress (could be an API call)
+            alert('Progress saved!');
+        }
+
+        function showHint() {
+            // Logic to show hints for the current exercise
+            alert('Here is a hint!');
+        }
+
+        function tryAgain() {
+            clearCode();
+        }
+
+        function returnToDashboard() {
+            document.getElementById('codingEnvironment').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
