@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Learning Dashboard</title>
+    <style>
+        /* Combined CSS */
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            font-size: 50px;
+        }
+        header {
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        .header a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .header c {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            background: #000000;
+        }
+
+        .tab-btn {
+            flex-grow: 1;
+            padding: 14px 20px;
+            border: none;
+            color: white;
+              background: #000000;
+            cursor: pointer;
+            font-size: 20px;
+
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: gray;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+.nav-tabs .active {
+    border-bottom: 3px solid white;
+}
+.tab:hover, .tab.active {
+    border-bottom: 2px solid #ffffff;
+}
+.filters {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    
+}
+
+.filter-options,.other-filters,.search-input {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+	.filter-options label,.other-filters label {
+            color:gray;
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+
+}
+
+        .search-btn {
+            padding: 10px;
+            background: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .progress-bar {
+            background: #ccc;
+            border-radius: 5px;
+            width: 100%;
+            height: 6px;
+        }
+
+        .progress-bar div {
+            height: 100%;
+            background: purple;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>My learning</h1>
+        <b>
+            <span style="font-weight: bold;">87hr 36min</span> 
+            <c> watched </c> 
+            • 
+            <span><a href="#" style="font-weight: bold; text-decoration: none;">View all activity</a></span>
+          </b>
+          
+    </header>
+
+    <nav class="tabs">
+        <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'all-courses')">All courses</button>
+        <button class="tab-btn" onclick="openTab(event, 'learning-paths')">Learning paths</button>
+        <button class="tab-btn" onclick="openTab(event, 'certifications')">Certifications</button>
+        <button class="tab-btn" onclick="openTab(event, 'archived')">Archived</button>
+        <button class="tab-btn" onclick="openTab(event, 'learning-tools')">Learning tools</button>
+    </nav>
+
+    <div class="tab-content active" id="all-courses">
+        <div class="filters">
+            <div class="filter-options">
+                <label>Sort by</label>
+                    <select>
+                        <option>Recently Accessed</option>
+                        <option>Most Progress</option>
+                        <option>Highest Rating</option>
+                    </select>
+                <label> Filter by</label>
+                    <select>
+                        <option>Categories</option>
+                    </select>
+                    <select>
+                        <option>Progress</option>
+                    </select>
+                    <select>
+                        <option>Instructor</option>
+                    </select>
+                <button class="reset-btn">Reset</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search my courses">
+                <button class="search-btn">&#128269;</button>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <img src="https://cucumber.fsoft.com.vn/wp-content/uploads/sites/14/2023/03/THUMNAIL-CMS-25.jpg" alt="Course Image">
+                <h3>FPT_ISMS Refresh Training S2 2024 (Vietnamese)</h3>
+                <p>FSOFT Content Development</p>
+                <p>100% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://img-b.udemycdn.com/course/750x422/4695284_83ea_6.jpg" alt="Course Image">
+                <h3>The Complete Spring Boot Development Bootcamp</h3>
+                <p>Learn The Part Inc.</p>
+                <p>100% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://img-b.udemycdn.com/course/480x270/3112646_159d_2.jpg" alt="Course Image">
+                <h3>MuleSoft 4.X Complete Guide For Beginners</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://img-b.udemycdn.com/course/240x135/4288332_8c7e_6.jpg" alt="Course Image">
+                <h3>English Vocabulary: 504 Esential Words through 7...</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://img-c.udemycdn.com/course/750x422/2045310_f8a2_7.jpg" alt="Course Image">
+                <h3>Build a Backend REST API with Python & Django</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmUBYQWUWPslzMNojOo4jOmQcLnz6QkdolyQ&s" alt="Course Image">
+                <h3>ChatGPT Python Programming AI Guided</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSflRv27mumqYKrVhsdWEQ12fe54bCtqs4Fpg&s" alt="Course Image">
+                <h3>Java Certification (1Z0-819) Topic wise Tests Part 1</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+            <div class="card">
+                <img src="https://fmit.vn/uploads/posts/ban-can-chuan-bi-kien-thuc-gi-khi-tham-gia-ky-thi-chung-chi-quoc-te-pmp-20211204112433.jpg" alt="Course Image">
+                <h3>FPT_PMP Training</h3>
+                <p>Chinna Reddy</p>
+                <p>1% complete</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="learning-paths">
+        <div class="card">
+            <h3>Induction Training_GAAFOFY (VI)</h3>
+            <p>1 of 6 items complete</p>
+            <div class="progress-bar"><div style="width: 16%;"></div></div>
+        </div>
+        <div class="card">
+            <h3>Induction Training for BO_IT_Mandatory (VI)</h3>
+            <p>9 of 9 items complete</p>
+            <div class="progress-bar"><div style="width: 100%;"></div></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="certifications">
+        <!-- Certifications Content -->
+    </div>
+
+    <div class="tab-content" id="archived">
+        <!-- Archived Content -->
+    </div>
+
+    <div class="tab-content" id="learning-tools">
+        <!-- Learning Tools Content -->
+    </div>
+
+    <script>
+        // JavaScript
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            var tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+
+            // Show the current tab and add an "active" class to the clicked button
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Set default tab open
+        document.getElementById('defaultOpen').click();
+    </script>
+</body>
+</html>
