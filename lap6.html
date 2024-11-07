@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+        }
+        header{
+            background-color: rgba(0, 123, 255, 0.964);
+            padding: 20px;
+            text-align: left;
+            font-size: 17px;
+            color: white;
+        }
+        .card-container{
+            display: grid;
+            padding: 10px;
+            grid-template-columns: repeat(3,1fr); 
+            gap: 20px;
+			place-items: center;        
+            }
+        .header-container{
+            gap:10px;
+            display: flex;
+            align-items: center;
+        }
+        .card {
+            width: 270px;
+            height: 270px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .card-content {
+            color: white;
+            height: 20px;
+            width: 70px;
+            background-color: rgba(0, 0, 0, 0.678);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .card-text {
+            text-align: center;
+            color: #55555595;
+            font-size: 1em;
+            line-height: 1.4;
+        }
+        .button-container {
+            display: flex; 
+            justify-content: space-between; 
+            width: 75%; 
+            margin:auto; 
+        }
+
+        .button {
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px;
+            font-size: 16px; 
+        }
+
+        .continue-button {
+            background-color: #007BFF; 
+            color: white; 
+        }
+
+        .guide-button {
+            color: #c1bcbc; 
+            background-color: white;
+            border:2px solid #c1bcbc;
+            border-color: #c1bcbc;
+        }
+        .icon {
+            border-top: 30px;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            align-items: center;
+        }
+        .icon1{background-image: url('https://mochajs.org/images/mocha-logo.svg');}
+        .icon2{background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png');}
+        .icon3{background-image: url('https://i.pinimg.com/736x/82/a2/18/82a2188c985ce75402ae44fc43fe7e5e.jpg');}
+        .icon4{background-image: url('https://www.svgrepo.com/show/452088/php.svg');}
+        .icon5{background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzjiYG5vmjT7tjLa0QXiUsmbu1ThFrwV1Tf-sfKrX9fHgmJQMTbBzxdr3qkM_SS1SjdNk&usqp=CAU');}
+        .icon6{background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/e3/f27630d13511e88dd241e68ded0cea/K_logo_800x800.png?auto=format%2Ccompress&dpr=2&w=300&h=300&fit=fill&bg=FFF');}
+
+        i{
+            color:#c1bcbc;
+        }
+        .modal {
+            justify-content: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            font-size:20px;
+
+        }
+        .modal-body {
+            padding: 20px;
+            justify-content: center;
+
+        }
+
+        .modal-body label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .modal-body input[type="text"], .modal-body select, .modal-body textarea {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+           	justify-content: center;
+
+        }
+
+        .modal-footer {
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #ddd;
+            justify-content: center;
+
+        }
+
+        .modal-footer button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #000000;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .editor-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .toolbar {
+            background: #f1f1f1;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        .toolbar button {
+            margin-right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color:black;
+        }
+        .toolbar button:hover {
+            color: #000000;
+        }
+        button i {
+    	color: black; 
+		}
+        .editor {
+            height: 200px;
+            padding: 10px;
+            overflow-y: auto;
+            outline: none;
+            font-family: Arial, sans-serif;
+            color:black;
+        }
+        .editor:focus {
+            border: 1px solid #007BFF;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .text-contain{
+        	color: white;
+            height: 20px;
+            width: 100px;
+            background-color: #c1bcbc;
+            border-radius: 8px;
+            text-align: center;
+            }
+        .input-section, .output-section {
+            margin-bottom: 20px;
+        }
+        .input-box, .output-box {
+            display: flex;
+            align-items: center;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 5px;
+            margin-right: 10px;
+            resize: vertical;
+        }
+        button {
+            padding: 5px 15px;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }.select-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .select-group label {
+            margin-right: 10px;
+        }
+        .input-case {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-case input {
+            margin-right: 10px;
+            flex: 1;
+        }
+        .btn-update {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-update:hover {
+            background-color: #0056b3;
+        }
+    </style>
+<body>
+    <header>
+        <h1>New unit test custom challenge</h1>
+    </header>
+    <div class ="card-container" >
+        <div class= "card">
+            <div class="icon icon1"></div>
+            <div class="header-container">
+            <h2>JavaScript</h2>
+            <div class= "card-content">Mocha</div>
+            </div>
+            <p class="card-text">User the Mocha testing framewwork and create unit tests to grade solutions.</p>
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+            </div>
+        <div class= "card">
+            <div class="icon icon2"></div>
+            <div class="header-container">
+            <h2>TypeScript </h2>
+            <div class= "card-content">Mocha</div>
+            </div>
+            <p class="card-text">User the Mocha testing framewwork and create unit tests to grade solutions.</p>
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+        </div>
+        <div class= "card">
+            <div class="icon icon3"></div>
+            <div class="header-container">
+            <h2>Python </h2>
+            <div class= "card-content">pytest</div>
+            </div>
+            <p class="card-text">pytesst is the most popular and fully-featured Python testing framework.</p>
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+        </div>
+        <div class= "card">
+            <div class="icon icon4"></div>
+            <div class="header-container">
+            <h2>PHP</h2>
+            <div class= "card-content">PHPUnit</div>
+            </div>
+            <p class="card-text">PHPUnit is a programmer-oriented testing framework for PHP.</p>
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+        </div>
+        <div class= "card">
+            <div class="icon icon5"></div>
+            <div class="header-container">
+            <h2>java</h2>
+            <div class= "card-content">JUnit</div>
+            </div>
+            <p class="card-text">JUnit is a popular unit-testing framewwork in the Java ecosystem.</p> 
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+        </div>
+        <div class= "card">
+            <div class="icon icon6"></div>
+            <div class="header-container">
+            <h2>Kotin</h2>
+            <div class= "card-content">JUnit</div>
+            </div>
+            <p class="card-text">JUnit is a popular unit-testing framework in the Kotin ecosystem.</p>
+            <div class="button-container">
+                <button class="button continue-button">Continue</button>
+                <button class="button guide-button">Guide</button>
+            </div>
+        </div>        
+    </div>
+    <div class="modal" id="newChallengeModal">
+        <div class="modal-body">
+            <input type="text" id="title" value="Demo">
+
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+
+            <label for="description">Short description:</label>
+            <textarea id="description" placeholder="Optional short description about this challenge..."></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-primary" onclick="openEditChallenge()">Click here to open the Java (JUnit) IDE and edit your code</button>
+        </div>
+    </div>
+
+    <!-- Challenge Editing Section -->
+    <div class="modal" id="editChallengeSection" style="display: none;">
+        <div class="modal-body">
+            <i>Last modified bt sonth1@fpt.com on Apr 01 2024</i>
+            <input type="text" id="editTitle" value="DSA ET Opt7 01">
+
+            <label for="editDifficulty">Difficulty:</label>
+            <select id="editDifficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+
+            <label for="editDescription">Short description:</label>
+            <textarea id="editDescription">This is a private challenge</textarea>
+
+            <div class="editor-container">
+                <div class="toolbar">
+                    <select onchange="formatBlock(this.value)" title="Format Block">
+                        <option value="p">Normal</option>
+                        <option value="h1">Heading 1</option>
+                        <option value="h2">Heading 2</option>
+                        <option value="h3">Heading 3</option>
+                        <option value="h4">Heading 4</option>
+                    </select>
+                    <button onclick="execCommand('bold')" title="Bold"><i class="fa fa-bold"></i></button>
+                    <button onclick="execCommand('italic')" title="Italic"><i class="fa fa-italic"></i></button>
+                    <button onclick="execCommand('underline')" title="Underline"><i class="fa fa-underline"></i></button>
+                    <button onclick="execCommand('insertOrderedList')" title="Numbered List"><i class="fa fa-list-ol"></i></button>
+                    <button onclick="execCommand('insertUnorderedList')" title="Bullet List"><i class="fa fa-list-ul"></i></button>
+                    <button onclick="execCommand('createLink', prompt('Enter URL:', 'http://'))" title="Insert Link"><i class="fa fa-link"></i></button>
+                    <button onclick="execCommand('removeFormat')" title="Clear Format"><i class="fa fa-eraser"></i></button>
+                    <button onclick="insertImage()" title="Insert Image"><i class="fa fa-image"></i></button>
+                </div>
+                <div id="editor" class="editor" contenteditable="true">
+                    Write a program to count the number of elements as odd numbers in the array.
+                    Example: Array A = {12, 31, 25, 17, 40, 10, 29}
+                    => Number of elements as odd number in array A is: 4
+                </div>
+            </div>
+            <button class="submit-btn" onclick="updateChallenge()">Update Custom Challenge</button>
+        </div>
+    </div>
+        <div class="modal-body">
+            <div class="select-group">
+                <div>
+                     <div class ="text-contain">Input type:</div>
+                    <select id="inputType">
+                        <option>Array of integers</option>
+                        <option>String</option>
+                        <option>Number</option>
+                    </select>
+                </div>
+                <div>
+                    <div class ="text-contain">Output type:</div>
+                    <select id="outputType">
+                        <option>Integer</option>
+                        <option>String</option>
+                        <option>Array</option>
+                    </select>
+                </div>
+            </div>
+    
+            <h4>Required test cases</h4>
+            <div id="testCases">
+                <!-- Example test cases -->
+                <div class="input-case">
+                    <input type="text" placeholder="Input 1" value="12, 31, 25, 17, 40, 10, 29">
+                    <input type="text" placeholder="Expected output" value="4">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 2" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10">
+                    <input type="text" placeholder="Expected output" value="5">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 3" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,14,15,16,17,18,19,20">
+                    <input type="text" placeholder="Expected output" value="10">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 4" value="0">
+                    <input type="text" placeholder="Expected output" value="0">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 5" value="1">
+                    <input type="text" placeholder="Expected output" value="1">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 6" value="0,2,4,6,8,10">
+                    <input type="text" placeholder="Expected output" value="0">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 7" value="Input 8"> 
+                    <input type="text" placeholder="Expected output" value="5">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 8" value="1,3,5">
+                    <input type="text" placeholder="Expected output" value="3">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 9" value="8,8,8,8,8,8,8,8,8,8">
+                    <input type="text" placeholder="Expected output" value="0">
+                </div>
+                <div class="input-case">
+                    <input type="text" placeholder="Input 10" value="1,1,1,1,1,1,1,1,1,1,1,1,1">
+                    <input type="text" placeholder="Expected output" value="13">
+                </div>
+                <!-- Add more cases as needed -->
+            </div>
+    
+            <button class="btn-update" onclick="updateChallenge()">Update custom challenge</button>
+        </div>
+    </div>
+        <script>
+       function openEditChallenge() {
+            document.getElementById('newChallengeModal').style.display = 'none';
+            document.getElementById('editChallengeSection').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('newChallengeModal').style.display = 'none';
+            document.getElementById('editChallengeSection').style.display = 'none';
+        }
+
+        function formatText(command, value = null) {
+            document.execCommand(command, false, value);
+        }
+        function insertImage() {
+        const url = prompt('Enter the image URL:', 'http://');
+        if (url) {
+            document.execCommand('insertImage', false, url);
+        }
+    }
+
+    function formatBlock(tag) {
+        document.execCommand('formatBlock', false, tag);
+    }
+        function saveContent() {
+            const content = document.getElementById('editor').innerHTML;
+            alert('Content saved: ' + content);
+        }
+        function updateChallenge() {
+            alert('Custom challenge updated successfully!');
+        }
+        
+        </script>
+</body>
+</html>
