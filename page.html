@@ -9,11 +9,10 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background-image: url('https://png.pngtree.com/background/20211215/original/pngtree-light-green-ink-smudge-flower-branch-background-picture-image_1453864.jpg');
             color: #333;
         }
 
-        /* Phong cách cho header */
         header {
             background-color: #314733;
             color: #fff;
@@ -27,7 +26,6 @@
             font-size: 2.5em;
         }
 
-        /* Phong cách cho thanh điều hướng */
         nav {
             background-color: #2f4f4f;
             padding: 10px;
@@ -39,53 +37,13 @@
             text-decoration: none;
             padding: 14px 20px;
             display: inline-block;
+            cursor: pointer;
         }
 
         nav a:hover {
             background-color: #555;
         }
 
-        /* Phong cách cho phần đăng nhập */
-        .login {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .login a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            background-color: #556b2f;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .login a:hover {
-            background-color: #445c2a;
-        }
-
-        /* Phong cách cho form đăng nhập */
-        #loginForm {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        #loginForm input {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        /* Container cho nội dung chính */
         .content {
             max-width: 900px;
             margin: 20px auto;
@@ -94,32 +52,14 @@
             box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
         }
 
-        .content h2 {
-            color: #2f4f4f;
+        .tab-content {
+            display: none;
         }
 
-        /* Phong cách cho phần kỹ năng */
-        .skills ul {
-            list-style-type: none;
-            padding: 0;
+        .tab-content.active {
+            display: block;
         }
 
-        .skills ul li {
-            background-color: #314733;
-            color: white;
-            padding: 10px;
-            margin: 5px 0;
-        }
-
-        /* Phong cách cho phần dự án */
-        .projects .project-item {
-            background-color: #f0f4f8;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-left: 5px solid #314733;
-        }
-
-        /* Phong cách cho footer */
         footer {
             background-color: #314733;
             color: #fff;
@@ -136,93 +76,102 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .project-item {
+            background-color: #f0f4f8;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 5px solid #314733;
+        }
+        
+        #contact {
+            text-align: left;
+            margin-left: 50px; /* Khoảng cách lề trái */
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header: Tên và tiêu đề -->
-    <header>
-        <h1>HCL</h1>
-        <p>Lập Trình Viên Web | Phát Triển Ứng Dụng | Kỹ Sư Phần Mềm</p>
+<header>
+    <h1>HCL</h1>
+</header>
 
-        <!-- Đăng nhập -->
-        <div class="login">
-            <a href="#" onclick="toggleLoginForm()">Đăng Nhập</a>
-        </div>
-
-        <!-- Form đăng nhập -->
-        <div id="loginForm">
-            <form>
-                <input type="text" placeholder="Tên tài khoản" required>
-                <input type="password" placeholder="Mật khẩu" required>
-                <button type="submit">Đăng Nhập</button>
-            </form>
-        </div>
-    </header>
-
-    <!-- Thanh điều hướng -->
-    <nav>
-    <a href="#about">Giới Thiệu</a>
-    <a href="#projects">Dự Án</a>
-    <a href="#contact">Liên Hệ</a>
-    <a href="#lab">Lab</a>
+<nav>
+    <a onclick="showTab('about')">About</a>
+    <a onclick="showTab('projects')">Projects</a>
+    <a onclick="showTab('contact')">Contact</a>
 </nav>
 
-
-    <div class="content">
-
-        <section id="about">
-            <h2>Giới Thiệu</h2>
-            <p>
-                Xin chào! Tôi là một lập trình viên web với niềm đam mê về công nghệ và phát triển phần mềm. Tôi thích tạo ra các ứng dụng web sáng tạo và mang tính tương tác cao, đồng thời luôn muốn học hỏi những công nghệ mới nhất.
-            </p>
-        </section>
-
-        <section id="lab">
-            <h2>Lab</h2>
-            <div class="lab">
-                <ul>
-                    <li><a href="file:///Users/tl/Documents/HCI/lab1.html">Lab1</a></li>
-            <li><a href="file:///Users/tl/Documents/HCI/lab2.html">Lab2</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Phần dự án -->
-        <section id="projects">
-            <h2>Dự Án</h2>
-            <div class="projects">
-                <div class="project-item">
-                    <h3>Website Cá Nhân</h3>
-                    <p>Tạo trang web cá nhân giới thiệu bản thân và các dự án đã hoàn thành.</p>
-                </div>
-                <div class="project-item">
-                    <h3>Ứng Dụng Quản Lý Công Việc</h3>
-                    <p>Phát triển ứng dụng quản lý công việc hàng ngày sử dụng React và Node.js.</p>
-                </div>
-                <div class="project-item">
-                    <h3>Ứng Dụng Ghi Chú</h3>
-                    <p>Ứng dụng ghi chú trực tuyến cho phép lưu trữ và quản lý các ghi chú cá nhân.</p>
-                </div>
-            </div>
-        </section>
-
+<div class="content">
+    <div id="about" class="tab-content active">
+        <h2>About</h2>
+        <p>Welcome to my website, it...</p>
     </div>
 
-    <footer>
-        <p>&copy; 2024 HCL. Tất cả các quyền được bảo lưu.</p>
-    </footer>
+    <div id="projects" class="tab-content">
+        <h2>Projects</h2>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/Created-login-form/">Lab1</a></h3>
+                <p>Is a project to program a login page</p>
+        </div>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/lab2/">Lab2</a></h3>
+                <p>Programming a course registration website</p>
+        </div>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/TLinh/">Lab3</a></h3>
+                <p>Function: share learning materials for students by subject. Each subject can share documents such as Lectures/Assignments/References.</p>
+        </div>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/lab4/">Lab4</a></h3>
+                <p>Programming a course website</p>
+        </div>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/Lab5/">Lab5</a></h3>
+                <p>Is a project to program a login page</p>
+        </div>
+        <div class="project-item">
+            <h3><a href="https://tl-1279.github.io/lab/">Lab6</a></h3>
+                <p>Iwebsite about programming languages, writing code
+                </p>
+        </div>
+      
+    </div>
 
-    <script>
-        function toggleLoginForm() {
-            const form = document.getElementById('loginForm');
-            if (form.style.display === 'block') {
-                form.style.display = 'none';
-            } else {
-                form.style.display = 'block';
-            }
+    <div id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p>Name: Nguyễn Thị Thuỷ Linh</p>
+        <p>Class: DH23DTC</p>
+    </div>
+
+
+<footer>
+    <p>&copy; 2024 Nguyễn Thị Thuỷ Linh</p>
+</footer>
+
+<script>
+    function showTab(tabId) {
+        var tabs = document.getElementsByClassName('tab-content');
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
         }
-    </script>
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showTab('about');
+    });
+</script>
 
 </body>
 </html>
